@@ -1,0 +1,114 @@
+<html>
+
+<head>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WHM7EQY1WK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-WHM7EQY1WK');
+  </script>
+
+  <title>
+    <%= campaign.campaign_name%>
+  </title>
+  <meta property="og:url" content="https://<%= campaign.shopID%>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="<%= campaign.campaign_name%>" />
+  <meta property="og:description"
+    content="I just scored 20% off on my cart at <%= campaign.campaign_name%> for sharing this campaign with you. You can earn it too" />
+  <meta property="og:image"
+    content="https://xyz.com/api/getThumbnail/<%= campaign.campaign_thumbnail%> " />
+  <meta property="og:image:width" content="1024">
+  <meta property="og:image:height" content="1024">
+
+  <style>
+    body {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #3498db;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite;
+      /* Safari */
+      animation: spin 2s linear infinite;
+    }
+
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="loader"></div>
+  <script>
+    const ShopUrl = `<%- campaign.shopURL %>`
+    const cCode = `<%- campaign.cCode%>`
+    const customerID = `<%- campaign.customerID%>`
+
+    async function getUserId() {
+
+
+
+      fetch("https://api.ipify.org/?format=json")
+        .then(res => res.json())
+        .then(link => {
+
+          fetch(`${location.origin}/${location.pathname.split("/")[1]}/myDetails/${location.pathname.split("/")[3]}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              link: link.ip,
+              customerID: customerID,
+              cCode: cCode
+            })
+          }).then((resp => {
+            window.location = `https://${ShopUrl}`
+          }
+          ));
+        }
+        ).catch(err => console.log(err))
+    }
+
+    setTimeout(() => {
+      getUserId()
+     
+    }, 0)
+  </script>
+</body>
+
+</html>

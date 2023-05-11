@@ -1,0 +1,71 @@
+.allCampaign{
+    display: flex;
+    flex-direction: column;
+}
+
+.create_campaign_parent{
+    width: 100%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.createCampaign{
+    text-align: right;
+    max-width: fit-content;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: #FD8282;
+    border: none;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: larger;
+    border-radius: 3px;
+}
+
+.createCampaign>span{
+    margin-right: 5px;
+}
+
+.createCampaign>span>svg{
+    transform: scale(1.3);
+    fill: #ffffff;
+}
+
+.campaign_card_collection{
+    display: flex;
+    /* flex-direction: column; */
+    /* border: 2px solid red; */
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px 40px;
+    /* justify-content: center; */
+}
+
+.campaign_card{
+    max-width: fit-content;
+}
+
+.campaign_card>div>div img{
+    border-radius: 15px;
+}
+
+.campaign_card>div a{
+    background-color: #FD8282;
+    color: #ffffff;
+    border: none;
+}
+
+.campaign_card>div a:hover{
+    background-color: #FD8282;
+}
+
+.campaign_card>div a span{
+    font-weight: 600;
+
+}
